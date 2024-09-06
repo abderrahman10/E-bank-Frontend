@@ -1,0 +1,61 @@
+<!-- your-form.component.html -->
+
+<div class="card">
+    <p-panel>
+        <!-- Use a proper heading tag for accessibility and SEO -->
+        <ng-template pTemplate="header">
+            <h2 class="text-primary font-semibold text-xl">Your Account Balance: {{ AccountBalance }} $</h2>
+        </ng-template>
+    </p-panel>
+</div>
+
+<!-- Use a proper heading tag for accessibility and SEO -->
+<!-- <form [formGroup]="NewTransactionForm"> -->
+    <div class="form-container p-4 mx-auto" style="max-width: 600px;">
+        <h2 class="form-title mb-4">New Transaction</h2>
+
+        <div class="p-card p-p-4">
+            <div class="p-field mb-4">
+                <label for="transactionType" class="mb-2 d-block">Transaction type</label>
+                <!-- Use label tags properly and provide a meaningful ID for accessibility -->
+                <p-dropdown [(ngModel)]="transaction.type" id="transactionType" [options]="transactionTypes" placeholder="Choose a transaction type" ></p-dropdown>
+            </div>
+
+            <div class="p-field mb-3" *ngIf="transaction.type === 'TRANSFERT'">
+                <label for="contact" class="mb-2 d-block">Choose a contact</label>
+                <!-- Use label tags properly and provide a meaningful ID for accessibility -->
+                <p-dropdown [(ngModel)]="transaction.destinationIban" id="contact" [options]="contacts" placeholder="Select a contact from the list" ></p-dropdown>
+            </div>
+
+            <div class="p-field mb-3" *ngIf="transaction.type">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">$</span>
+                    <!-- Use proper input type for numerical values -->
+                    <input [(ngModel)]="transaction.amount" type="number" pInputText placeholder="Amount"  />
+                    <span class="p-inputgroup-addon">.00</span>
+                </div>
+            </div>
+
+            <div class="p-field mb-3" *ngIf="transaction.type === 'TRANSFERT'">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">IBAN</span>
+                    <!-- Use proper input type for IBAN -->
+                    <input [(ngModel)]="transaction.destinationIban" type="text" pInputText placeholder="IBAN"  />
+                </div>
+            </div>
+        
+            <div class="p-field mb-3"  *ngIf="transaction.type">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon">UserId</span>
+                    <!-- Use proper input type for IBAN -->
+                    <input [(ngModel)]="transaction.userId" type="number" pInputText placeholder="UserId"  />
+                </div>
+            </div>
+            <div class="p-field p-d-flex p-jc-between mb-4">
+                <!-- Use pButton instead of p-button -->
+                <p-button label="Cancel" styleClass="p-button-secondary mr-2" (onClick)="cancel()"></p-button>
+                <p-button label="Save" styleClass="p-button-success" (onClick)="saveTransaction()"></p-button>
+            </div>
+        </div>
+    </div>
+<!-- </form> -->

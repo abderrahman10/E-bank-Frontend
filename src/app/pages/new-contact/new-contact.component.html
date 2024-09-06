@@ -1,0 +1,81 @@
+<!-- your-form.component.html -->
+<form [formGroup]="NewContactForm" (ngSubmit)="onFormSubmit()">
+<div class="form-container p-4 mx-auto" style="max-width: 600px;">
+    <h2 class="form-title mb-4">Add New Contact</h2>
+
+    <div class="p-card p-p-4">
+
+        <div class="p-inputgroup mb-3">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-user"></i>
+            </span>
+            <input pInputText placeholder="firstname" formControlName="firstname" />
+            <div  class="error-message"
+            *ngIf=" NewContactForm.get('firstname')?.hasError('required') &&
+             NewContactForm.get('firstname')?.dirty"
+            >
+            firstname is required.
+            </div>
+        </div>
+        
+        <div class="p-inputgroup mb-3">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-user"></i>
+            </span>
+            <input pInputText placeholder="lastname"  formControlName="lastname"/>
+            <div  class="error-message"
+            *ngIf=" NewContactForm.get('lastname')?.hasError('required') &&
+             NewContactForm.get('lastname')?.dirty"
+            >
+            lastname is required.
+            </div>
+        </div>
+      
+        <div class="p-inputgroup mb-3">
+            <span class="p-inputgroup-addon">
+                <i class="pi pi-user"></i>
+            </span>
+            <input pInputText placeholder="Email"  formControlName="email" />
+            <div  class="error-message"
+            *ngIf=" NewContactForm.get('email')?.hasError('required') &&
+             NewContactForm.get('email')?.dirty"
+            >
+             email  is required.
+            </div>
+        </div>
+        <div class="p-field mb-3">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">iban</span>
+                <input type="text" pInputText placeholder="iban" formControlName="iban" />
+                <div  class="error-message"
+                *ngIf=" NewContactForm.get('iban')?.hasError('required') &&
+                 NewContactForm.get('iban')?.dirty"
+                >
+                iban is required.
+                </div>
+            </div>
+        </div> 
+
+        <div class="p-field mb-3">
+            <div class="p-inputgroup">
+                <span class="p-inputgroup-addon">userID</span>
+                <input type="number" pInputText placeholder="userID" formControlName="userID" />
+                <div  class="error-message"
+                *ngIf=" NewContactForm.get('userID')?.hasError('required') &&
+                 NewContactForm.get('userID')?.dirty"
+                >
+                UserId is required.
+                </div>
+            </div>
+        </div>
+
+        <div class="p-field p-d-flex p-jc-between mb-4">
+            <p-button label="Cancel" styleClass="p-button-secondary mr-2" routerLink="/user/contacts"></p-button>
+
+            <p-button  *ngIf="!updateForm"   label="Save" type="submit" [disabled]="submitButton" styleClass="p-button-success"></p-button>
+            <p-button  *ngIf="updateForm"  [disabled]="submitButton" label="Editer" type="button"  (click)="update()" styleClass="p-button-success"></p-button>
+
+        </div>
+    </div>
+</div>
+</form>

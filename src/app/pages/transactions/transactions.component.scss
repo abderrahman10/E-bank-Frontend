@@ -1,0 +1,12 @@
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  
+  .button-container p-button + p-button {
+
+    margin-left: 1rem; /* Adjust as needed for spacing between buttons */
+  }
+  

@@ -1,0 +1,56 @@
+<div class="fixed left-0 top-0 min-h-screen min-w-screen login-container"></div>
+
+<div class="px-5 min-h-screen flex justify-content-center align-items-center">
+  <div class="border-1 surface-border surface-card border-round py-7 px-4 md:px-7 z-1">
+      <div class="mb-4">
+          <div class="text-900 text-xl font-bold mb-2">Register</div>
+          <span class="text-600 font-medium">Let's get started</span>
+      </div>
+      <form [formGroup]="RegisterForm" (ngSubmit)="register()">
+      <div class="flex flex-column">
+
+          <span class="p-input-icon-left w-full ">
+            <i class="pi pi-user"></i>
+            <input id="firstname" type="text" pInputText class="w-full md:w-25rem"  formControlName="firstname" placeholder="firstname">
+          </span>
+          <div *ngIf="RegisterForm.get('firstname')?.invalid && (RegisterForm.get('firstname')?.dirty || RegisterForm.get('firstname')?.touched)" class="error-message mt-2">
+            firstname is required
+           </div>
+           
+           <span class="p-input-icon-left w-full  mt-4 ">
+            <i class="pi pi-user"></i>
+            <input id="lastname" type="text" pInputText class="w-full md:w-25rem"  formControlName="lastname" placeholder="lastname">
+          </span>
+          <div *ngIf="RegisterForm.get('lastname')?.invalid && (RegisterForm.get('lastname')?.dirty || RegisterForm.get('lastname')?.touched)" class="error-message mt-2">
+            lastname is required
+          </div>  
+
+ 
+           
+
+          <span class="p-input-icon-left w-full mt-4">
+              <i class="pi pi-envelope"></i>
+              <input id="email" type="text" pInputText class="w-full md:w-25rem"  formControlName="email" placeholder="Email">
+          </span>
+          <div *ngIf="RegisterForm.get('email')?.invalid && (RegisterForm.get('email')?.dirty || RegisterForm.get('email')?.touched)" class="error-message mt-2">
+            <div *ngIf="RegisterForm.get('email')?.errors?.['email']">Invalid email format</div>
+          </div>
+
+          <span class="p-input-icon-left w-full mt-4 mb-4">
+              <i class="pi pi-lock z-2"></i>
+            <p-password id="password" placeholder="Password" styleClass="w-full"   formControlName="password" [inputStyle]="{paddingLeft: '2.5rem'}" inputStyleClass="w-full md:w-25rem" [toggleMask]="true" ></p-password>
+          </span>
+
+          <div class="mb-4 flex flex-wrap">
+              <p-checkbox name="checkbox" value="val"   styleClass="mr-2" [binary]="true"></p-checkbox>
+              <label for="checkbox" class="text-900 font-medium mr-2">I have read the</label>
+              <a class="text-600 cursor-pointer hover:text-primary cursor-pointer">Terms and Conditions</a>
+          </div>
+
+          <button pButton pRipple label="Sign Up" type="submit" class="w-full mb-4" [loading]="isLoading" ></button>
+          <span class="font-medium text-600">Already have an account? <a class="font-semibold cursor-pointer text-900 hover:text-primary transition-colors transition-duration-300" routerLink="../">Login</a></span>
+
+      </div>
+    </form>
+  </div>
+</div>

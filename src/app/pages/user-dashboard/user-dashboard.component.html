@@ -1,0 +1,45 @@
+<div class="p-2">
+  <h2>My account at a glance</h2>
+  <div class="d-flex flex-row justify-content-between card me-5 ms-5 mb-3 p-3">
+    <!-- Content goes here -->
+    <app-light-infos *ngFor="let info of AccountInfo" [lightInfo]="info"></app-light-infos>
+  </div>
+
+  <div class="custom-card m-3 p-3">
+    <form [formGroup]="DateFromulaire">
+    <div class="d-flex flex-row align-content-center align-items-start mb-3">
+      <div class="me-3">
+        <label class="form-label">Start date  </label>
+        <p-calendar  id="start-date" formControlName="startDate" ></p-calendar>
+      </div>
+      <div class="me-3">
+        <label class="form-label">End date </label>
+        <p-calendar  id="End-date"formControlName="endDate"></p-calendar>
+      </div>
+      <div class="p-field p-d-flex p-jc-between mb-4">
+        <p-button    label="Find" type="button"  (click)="getSumByDates()" styleClass="p-button-success"></p-button>
+
+    </div>
+    </div>
+    </form>
+
+    <div class="custom-card p-3">
+      <!-- Additional content goes here -->
+      <div id="chart">
+        <apx-chart
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [xaxis]="chartOptions.xaxis"
+          [stroke]="chartOptions.stroke"
+          [dataLabels]="chartOptions.dataLabels"
+          [yaxis]="chartOptions.yaxis"
+          [labels]="chartOptions.labels"
+          [legend]="chartOptions.legend"
+          [title]="chartOptions.title"
+          [subtitle]="chartOptions.subtitle"
+        ></apx-chart>
+      </div>
+      
+    </div>
+  </div>
+</div>
